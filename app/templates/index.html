@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block title %}Welcome - {{ config.APP_NAME }}{%
+endblock %} {% block content %}
+<div class="row align-items-center min-vh-75">
+  <div class="col-lg-6">
+    <h1 class="display-4 fw-bold text-primary mb-4">
+      Secure Cloud File Sharing
+    </h1>
+    <p class="lead text-muted mb-4">
+      Protect your files with military-grade hybrid cryptography. RSA + AES
+      encryption ensures your data remains private, even in the cloud.
+    </p>
+    <div class="d-flex gap-3">
+      <a href="{{ url_for('auth.signup') }}" class="btn btn-primary btn-lg">
+        <i class="bi bi-person-plus"></i> Get Started
+      </a>
+      <a
+        href="{{ url_for('auth.login') }}"
+        class="btn btn-outline-primary btn-lg"
+      >
+        <i class="bi bi-box-arrow-in-right"></i> Sign In
+      </a>
+    </div>
+    <div class="row mt-5 g-4">
+      <div class="col-md-4 text-center">
+        <div
+          class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3"
+        >
+          <i class="bi bi-lock fs-2"></i>
+        </div>
+        <h5>RSA Hybrid Crypto</h5>
+        <small class="text-muted">Asymmetric + Symmetric</small>
+      </div>
+      <div class="col-md-4 text-center">
+        <div
+          class="feature-icon bg-success bg-gradient text-white rounded-3 mb-3"
+        >
+          <i class="bi bi-cloud-upload fs-2"></i>
+        </div>
+        <h5>AWS S3 Storage</h5>
+        <small class="text-muted">Enterprise Cloud</small>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="feature-icon bg-info bg-gradient text-white rounded-3 mb-3">
+          <i class="bi bi-shield-check fs-2"></i>
+        </div>
+        <h5>Audit Logging</h5>
+        <small class="text-muted">Full Activity Trail</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 d-none d-lg-block">
+    <div class="card shadow-lg border-0">
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <i class="bi bi-shield-lock text-primary" style="font-size: 5rem"></i>
+        </div>
+        <h3 class="text-center mb-3">How It Works</h3>
+        <div class="list-group list-group-flush">
+          <div class="list-group-item d-flex align-items-center">
+            <span class="badge bg-primary rounded-pill me-3">1</span>
+            Sign up with RSA key generation
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <span class="badge bg-primary rounded-pill me-3">2</span>
+            Upload files - encrypted in browser
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <span class="badge bg-primary rounded-pill me-3">3</span>
+            Stored encrypted on AWS S3
+          </div>
+          <div class="list-group-item d-flex align-items-center">
+            <span class="badge bg-primary rounded-pill me-3">4</span>
+            Download with your private key
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Environment & Secrets
+.env
+.env.*
+
+# Database & Local Storage
+*.db
+*.sqlite
+*.sqlite3
+local_storage/
+instance/
+
+# IDE
+.vscode/
+.idea/
+*.swp

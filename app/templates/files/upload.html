@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block title %}Upload File - {{ config.APP_NAME }}{%
+endblock %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">
+          <i class="bi bi-cloud-upload"></i> Secure File Upload
+        </h5>
+      </div>
+      <div class="card-body p-5">
+        <div class="text-center mb-4">
+          <i class="bi bi-shield-lock text-primary" style="font-size: 3rem"></i>
+          <p class="text-muted mt-2">
+            Files are encrypted with RSA hybrid cryptography before upload
+          </p>
+        </div>
+        <form
+          method="POST"
+          action="{{ url_for('files.upload') }}"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-4">
+            <label class="form-label">Select File</label>
+            <input
+              type="file"
+              name="file"
+              class="form-control form-control-lg"
+              required
+            />
+            <small class="text-muted">
+              Max size: {{ (config.MAX_CONTENT_LENGTH / 1024 / 1024)|int }} MB |
+              Allowed: txt, pdf, png, jpg, doc, docx, xls, xlsx, ppt, pptx, zip
+            </small>
+          </div>
+          <div class="mb-4">
+            <label class="form-label">Encryption Algorithm</label>
+            <select name="algorithm" class="form-select">
+              <option value="fernet" selected>
+                Fernet (AES-128-CBC + HMAC)
+              </option>
+              <option value="aes-gcm">AES-256-GCM (Authenticated)</option>
+              <option value="aes-ccm">AES-256-CCM (Authenticated)</option>
+            </select>
+            <small class="text-muted">
+              All algorithms use unique keys encrypted with your RSA public key
+            </small>
+          </div>
+          <div class="alert alert-info">
+            <i class="bi bi-info-circle"></i>
+            <strong>How it works:</strong>
+            <ol class="mb-0 mt-2">
+              <li>File is encrypted with selected algorithm</li>
+              <li>Encryption key is encrypted with your RSA public key</li>
+              <li>Encrypted file is uploaded to AWS S3</li>
+              <li>Only your RSA private key can decrypt the file</li>
+            </ol>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 btn-lg">
+            <i class="bi bi-lock"></i> Encrypt & Upload
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
