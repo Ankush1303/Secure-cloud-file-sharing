@@ -54,7 +54,7 @@ def login():
             flash(error, 'danger')
             return render_template('auth/login.html')
         login_user(user, remember=bool(remember))
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=str(user.id))
         response = make_response(redirect(url_for('main.dashboard')))
         set_access_cookies(response, access_token)
         flash(f'Welcome back, {user.username}!', 'success')

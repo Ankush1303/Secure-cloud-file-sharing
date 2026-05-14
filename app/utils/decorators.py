@@ -10,7 +10,7 @@ def jwt_or_login_required(fn):
         try:
             verify_jwt_in_request()
             jwt_user_id = get_jwt_identity()
-            user = User.query.get(jwt_user_id)
+            user = User.query.get(int(jwt_user_id)) if jwt_user_id else None
             if user:
                 request.current_user = user
                 return fn(*args, **kwargs)
